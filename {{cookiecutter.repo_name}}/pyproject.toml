@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "{{ cookiecutter.repo_name }}"
+version = "{{ cookiecutter.version }}"
+description = "{{ cookiecutter.project_short_description }}"
+readme = "README.md"
+authors = ["{{ cookiecutter.full_name }} <{{ cookiecutter.email }}>"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.dependencies]
+python = "^3.9"
+loguru = "^0.6.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+pytest-cov = "^3.0.0"
+pre-commit = "^2.19.0"
+black = "^22.6.0"
+isort = "^5.10.1"
+bump2version = "^1.0.1"
+tox = "^3.25.1"
+
+
+[tool.poetry.scripts]
+{{ cookiecutter.repo_name }} = "{{ cookiecutter.repo_name }}.cli.main_cli:main"
+{%- endif %}
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "src"
+]
+
+
+[tool.black]
+line-length = 100
+
+[tool.isort]
+known_first_party = "tests"
+line_length = 100
+profile = "black"

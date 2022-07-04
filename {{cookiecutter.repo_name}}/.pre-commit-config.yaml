@@ -1,0 +1,37 @@
+# To install the git pre-commit hook run:
+#   pre-commit install
+# To update the pre-commit hooks run:
+#   pre-commit install-hooks
+exclude: '^(\.tox|ci/templates|\.bumpversion\.cfg)(/|$)'
+repos:
+- repo: local
+  hooks:
+  - id: isort
+    name: isort
+    stages: [commit]
+    language: system
+    entry: poetry run isort .
+    types: [python]
+
+  - id: black
+    name: black
+    stages: [commit]
+    language: system
+    entry: poetry run black .
+    types: [python]
+
+  - id: pytest
+    name: pytest
+    stages: [ push ]
+    language: system
+    entry: poetry run pytest
+    types: [ python ]
+    pass_filenames: false
+
+  - id: pytest-cov
+    name: pytest
+    stages: [push]
+    language: system
+    entry: poetry run pytest --cov --cov-fail-under=100
+    types: [python]
+    pass_filenames: false
