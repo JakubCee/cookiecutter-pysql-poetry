@@ -23,7 +23,7 @@ isort = "^5.10.1"
 bump2version = "^1.0.1"
 tox = "^3.25.1"
 
-
+{%- if cookiecutter.command_line_interface in ("argparse", "click") %}
 [tool.poetry.scripts]
 {{ cookiecutter.repo_name }} = "{{ cookiecutter.repo_name }}.cli.main_cli:main"
 {%- endif %}
